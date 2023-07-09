@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "External Links"
+title: "Research"
 permalink: /links/
 author_profile: true
 ---
