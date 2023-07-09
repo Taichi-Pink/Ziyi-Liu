@@ -8,11 +8,11 @@
 # Site Settings
 theme                    : minimal-mistakes-jekyll
 locale                   : "en"
-title                    : "Li Zeng"
+title                    : "Ziyi Liu"
 title_separator          : "-"
-name                     : "Li Zeng"
+name                     : "Ziyi Liu"
 description              : "Powered by Jekyll and minimal-mistakes theme"
-url                      : #"https://zengliX.github.io" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
+url                      : #"https://taichi-pink.github.io" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : "zengliX/zengliX.github.io" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
@@ -78,11 +78,11 @@ analytics:
 
 # Site Author
 author:
-  name             : "Li Zeng"
-  avatar           : "/others/profile.png" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
+  name             : "Ziyi Liu"
+  avatar           : "/others/profile.jpeg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "Biostatistics Ph.D at Yale"
   location         : "New Haven, CT"
-  email            : "li.zeng@yale.edu"
+  email            : "ziyiliu29@gmail.com"
   uri              :
   bitbucket        :
   codepen          :
