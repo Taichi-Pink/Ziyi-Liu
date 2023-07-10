@@ -81,7 +81,7 @@ analytics:
 # Site Author
 author:
   name             : "Ziyi Liu"
-  avatar           : "/others/profile.png" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
+  avatar           : "/others/profile.jpeg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "Machine learning Master at University of Southern California"
   location         : "Los Angeles, CA"
   email            : "ziyiliu29@gmail.com"
