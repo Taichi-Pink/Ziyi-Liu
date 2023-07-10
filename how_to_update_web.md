@@ -3,6 +3,13 @@
 - save --> CNAME file
 - edit this file """
 
+## Layout
+- All the layouts are defined in the folder `_layouts` and have `default --> archive` layout
+
+## Side Bar
+### Increase profile image size
+- `_includes/author-profile.html` change `<img style=""`
+
 ## Add more sections
 - change `_data/navigation.yml`
 

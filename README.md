@@ -9,6 +9,7 @@ minimal-mistakes/
 |    ├── open-graph.html        # Twitter Cards and Open Graph meta data
 |    └── scripts           # site scripts
 ├── _layouts/
+|    ├── default.html            # main layout: header, footer 
 |    ├── home.html               # homepage layout
 |    ├── page.html               # page layout
 |    ├── post-index.html         # post index layout
