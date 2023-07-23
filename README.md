@@ -5,6 +5,7 @@ Copy from Jon Barron's public academic website: https://jonbarron.info/. You are
 1. create a favicon.ico using website: https://favicon.io/favicon-converter/, download the file and upload to the image folder
 2. update the path in ```<link rel="icon" href="images/favicon_io/favicon.ico">```
 
-- 
+- changed
+1. email, google scholar, github, twitter link
  
 
