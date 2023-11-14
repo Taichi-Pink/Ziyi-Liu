@@ -93,8 +93,14 @@
 
           <tr onmouseout="dreamfusion_stop()" onmouseover="dreamfusion_start()"  bgcolor="#ffffd0">
             <td style="padding:20px;width:25%;vertical-align:middle">
-              <div class="one">
+              <!-- <div class="one">
                 <img src='web_img/BOSS_teaser.gif' width="160">
+              </div> -->
+              <div class="one">
+                <div class="two" id="boss_image" ,="" style="opacity: 0;">
+                  <img src="web_img/boss_after.gif" class="paper_img">
+                </div>
+                <img id="boss_gif" src="web_img/boss_before.png" class="paper_img" style="opacity: 1;">
               </div>
               <script type="text/javascript">
                 function dreamfusion_start() {
@@ -127,7 +133,7 @@
               <a href="">code</a>
               <p></p>
               <p>
-                We propose BOSS, an approach that automatically learns to solve new long-horizon, complex, and meaningful tasks by growing a learned skill library with minimal supervision.
+                Our approach BOSS (BOotStrapping your own Skills) learns to accomplish new tasks by performing "skill bootstrapping," where an agent with a set of primitive skills interacts with the environment to practice new skills without receiving reward feedback for tasks outside of the initial skill set. This bootstrapping phase is guided by large language models that inform the agent of meaningful skills to chain together. Through this process, BOSS builds a wide range of complex and useful behaviors from a basic set of primitive skills.
               </p>
             </td>
           </tr>
@@ -166,9 +172,9 @@
               <a href="https://arxiv.org/pdf/2102.00348.pdf">arXiv</a> /
               <a href="https://github.com/linmc86/Deep-Reformulated-Laplacian-Tone-Mapping">code</a>
               <p></p>
-              <!-- <p>
-A joint optimization framework for estimating shape, BRDF, camera pose, and illumination from in-the-wild image collections.
-              </p> -->
+              <p>
+                We propose a reformulated Laplacian neural network to pursue more stable and smoother tone-mapping results.
+              </p>
             </td>
           </tr>		
 
@@ -247,9 +253,9 @@ A joint optimization framework for estimating shape, BRDF, camera pose, and illu
               <a href="https://github.com/Taichi-Pink/WDR-Face-Database">code</a>
 
               <p></p>
-              <!-- <p>
-              We denoise images efficiently by predicting spatially-varying kernels at low resolution and using a fast fused op to jointly upsample and apply these kernels at full resolution.
-              </p> -->
+              <p>
+                We propose the first WDR database for face detection, which contains a total of 398 16-bit megapixel grayscale wide dynamic range images collected from 29 subjects. The database is annotated with bounding boxes and landmarks. We also provide the ground truth of the face detection results. 
+              </p>
             </td>
           </tr>
 					
