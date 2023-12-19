@@ -424,6 +424,39 @@
       </td>
     </tr>
   </table>
+  <!-- Add this within your body tag -->
+  <div id="chat-container">
+    <div id="chat-box">
+        <ul id="conversation"></ul>
+    </div>
+    <input type="text" id="user-input" placeholder="Ask me something..." />
+    <button id="send-button">Send</button>
+  </div>
+  <script>
+    document.getElementById('send-button').addEventListener('click', function() {
+    var userInput = document.getElementById('user-input').value;
+    addMessageToChat("User", userInput);
+
+    // Simple response logic (you can replace this with AI logic)
+    var response = "I'm not sure how to answer that.";
+    if(userInput.includes("hello")) {
+        response = "Hello there!";
+    } else if(userInput.includes("help")) {
+        response = "How can I assist you?";
+    }
+
+    addMessageToChat("Bot", response);
+    document.getElementById('user-input').value = ''; // Clear input field
+    });
+
+    function addMessageToChat(sender, message) {
+        var conversationElement = document.getElementById('conversation');
+        var newMessage = document.createElement('li');
+        newMessage.textContent = sender + ": " + message;
+        conversationElement.appendChild(newMessage);
+    }
+  </script>
+<!-- Add this within your body tag -->
 </body>
 
 </html>
