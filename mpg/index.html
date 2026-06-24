@@ -43,17 +43,6 @@
             <i class="fas fa-home"></i>
           </span>
         </a>
-
-        <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link">
-            Related Research
-          </a>
-          <div class="navbar-dropdown">
-            <a class="navbar-item" href="https://clvrai.github.io/boss/">
-              BOSS
-            </a>
-          </div>
-        </div>
       </div>
     </div>
   </nav>
@@ -118,10 +107,9 @@
 
 
   <section class="section">
-    <div class="container">
-      <div class="is-centered has-text-centered">
-        <img src="./static/images/teaser.png" width="100%" alt="MPG overview"
-          style="border-radius:10px; max-width: 960px;">
+    <div class="container is-max-desktop">
+      <div class="has-text-centered">
+        <img src="./static/images/figures/teaser.png" class="teaser-image" alt="MPG overview">
       </div>
     </div>
   </section>
@@ -174,8 +162,12 @@
             </p>
           </div>
           <div class="content has-text-centered">
-            <img src="./static/images/teaser.png" class="interpolation-image"
-              alt="MPG learns a generalizable and informative reward from multi-task demonstrations and policy proximity.">
+            <img src="./static/images/figures/method.png" class="interpolation-image"
+              alt="MPG learns a two-part reward from a multi-task discriminator and a proximity function.">
+            <p class="figure-caption">
+              Our approach learns a two-part reward function: a multi-task discriminator approximates the expert
+              distribution, and a proximity reward estimates distance to expert states for corrective guidance.
+            </p>
           </div>
           <div class="content has-text-justified">
             <p>
@@ -270,6 +262,20 @@
               position, table position, distractor objects, and arm position.
             </p>
           </div>
+          <div class="columns is-vcentered env-grid">
+            <div class="column is-3 has-text-centered">
+              <img src="./static/images/figures/envs/maze.png" alt="Maze2D environment">
+              <p class="figure-caption"><b>Maze2D</b></p>
+            </div>
+            <div class="column is-3 has-text-centered">
+              <img src="./static/images/figures/envs/block_stacking.png" alt="Block Stacking environment">
+              <p class="figure-caption"><b>Block Stacking</b></p>
+            </div>
+            <div class="column is-6 has-text-centered">
+              <img src="./static/images/figures/envs/factorworld.png" alt="FactorWorld environment">
+              <p class="figure-caption"><b>FactorWorld</b></p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -291,6 +297,37 @@
               achieving an average <b>35.4% success rate improvement</b> over the next best method. We compare against
               BC, SQIL, GAIL, MT-AIRL, PEMIRL, GoalPro, and DVD.
             </p>
+          </div>
+          <div class="content has-text-centered results-grid">
+            <div class="columns is-multiline is-centered">
+              <div class="column is-4">
+                <img src="./static/images/figures/results/main/maze_main_success.png" alt="Maze2D results">
+              </div>
+              <div class="column is-4">
+                <img src="./static/images/figures/results/main/block_main_success.png" alt="Block Stacking results">
+              </div>
+              <div class="column is-4">
+                <img src="./static/images/figures/results/main/door_open_main_success.png" alt="Door Open results">
+              </div>
+              <div class="column is-4">
+                <img src="./static/images/figures/results/main/door_unlock_main_success.png" alt="Door Unlock results">
+              </div>
+              <div class="column is-4">
+                <img src="./static/images/figures/results/main/plate_slide_back_main_success.png"
+                  alt="Plate Slide Back results">
+              </div>
+              <div class="column is-4">
+                <img src="./static/images/figures/results/main/button_press_wall_main_success.png"
+                  alt="Button Press Wall results">
+              </div>
+            </div>
+            <img src="./static/images/figures/results/main/main_legend.png" alt="Results legend"
+              style="max-width: 90%; margin-top: 0.5rem;">
+            <p class="figure-caption">
+              MPG comparison against all baselines. Dashed lines (BC, SQIL) denote performance at convergence.
+            </p>
+          </div>
+          <div class="content has-text-justified">
             <p>
               <b>MPG vs. IRL baselines:</b> Although GAIL and MT-AIRL have access to the same data resources, they
               struggle to leverage heterogeneous demonstrations under scarce supervision and substantial task variation.
@@ -308,6 +345,26 @@
             </p>
           </div>
 
+          <h4 class="title is-4">Data Efficiency Analysis</h4>
+          <div class="content has-text-justified">
+            <p>
+              Performance improves with more target demonstrations and with greater task diversity in the multi-task
+              dataset, though gains plateau once a moderate level of diversity is reached.
+            </p>
+          </div>
+          <div class="columns is-centered results-grid">
+            <div class="column is-5 has-text-centered">
+              <img src="./static/images/figures/results/analysis/demo_num_door_lock.png"
+                alt="Effect of number of target demonstrations">
+              <p class="figure-caption">Effect of the number of target demonstrations.</p>
+            </div>
+            <div class="column is-5 has-text-centered">
+              <img src="./static/images/figures/results/analysis/mt_num_block.png"
+                alt="Effect of number of tasks in multi-task dataset">
+              <p class="figure-caption">Effect of the number of tasks in the multi-task dataset.</p>
+            </div>
+          </div>
+
           <h4 class="title is-4">Ablation Study</h4>
           <div class="content has-text-justified">
             <p>
@@ -316,10 +373,21 @@
               both yields the best performance. Removing the multi-task dataset (<b>no multi-task data</b>) also degrades
               performance, indicating that information from related tasks is important for generalization.
             </p>
-            <p>
-              Performance improves with more target demonstrations and with greater task diversity in the multi-task
-              dataset, though gains plateau once a moderate level of diversity is reached.
-            </p>
+          </div>
+          <div class="content has-text-centered results-grid">
+            <img src="./static/images/figures/results/ablations/lever_pull_ablation.png"
+              alt="Ablation of MPG reward components" style="max-width: 70%;">
+            <p class="figure-caption">Ablation of MPG's reward components on Lever Pull.</p>
+          </div>
+          <div class="columns is-centered results-grid">
+            <div class="column is-5 has-text-centered">
+              <img src="./static/images/figures/toy_env/discriminator.png" alt="Discriminator reward heatmap">
+              <p class="figure-caption"><b>Discriminator</b> reward heatmap.</p>
+            </div>
+            <div class="column is-5 has-text-centered">
+              <img src="./static/images/figures/toy_env/proximity.png" alt="Proximity reward heatmap">
+              <p class="figure-caption"><b>Proximity</b> reward heatmap.</p>
+            </div>
           </div>
         </div>
       </div>

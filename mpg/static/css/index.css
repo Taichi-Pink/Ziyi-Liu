@@ -160,3 +160,25 @@ hr {
   margin: auto;
   background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
 }
+
+.teaser-image {
+  width: 100%;
+  max-width: 520px;
+  border-radius: 10px;
+}
+
+.figure-caption {
+  color: #666;
+  font-size: 14px;
+  margin-top: 0.75rem;
+}
+
+.results-grid img {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.env-grid img {
+  width: 100%;
+  border-radius: 5px;
+}
