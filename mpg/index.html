@@ -362,30 +362,15 @@
           </div>
 
           <h4 class="title is-4">Ablation Study</h4>
-          <div class="columns ablation-row">
-            <div class="column is-7 ablation-text">
-              <div class="content has-text-justified">
-                <p>
-                  We ablate the two parts of our reward function by training policies with either a <b>discriminator
-                    only</b>
-                  reward or a <b>proximity only</b> reward. While each component individually provides benefits,
-                  combining
-                  both yields the best performance. Removing the multi-task dataset (<b>no multi-task data</b>) also
-                  degrades
-                  performance, indicating that information from related tasks is important for generalization.
-                </p>
-              </div>
-            </div>
-            <div class="column is-5 ablation-plot">
-              <div class="ablation-plot-inner">
-                <img src="./static/images/figures/results/ablations/lever_pull_ablation.png"
-                  alt="Ablation of MPG reward components">
-              </div>
-            </div>
-          </div>
-          <p class="figure-caption has-text-centered">Ablation of MPG's reward components on Lever Pull.</p>
-
           <div class="content has-text-justified">
+            <p>
+              We ablate the two parts of our reward function by training policies with either a <b>discriminator
+                only</b>
+              reward or a <b>proximity only</b> reward. While each component individually provides benefits, combining
+              both yields the best performance. Removing the multi-task dataset (<b>no multi-task data</b>) also
+              degrades
+              performance, indicating that information from related tasks is important for generalization.
+            </p>
             <p>
               We further illustrate the two components in a simple empty Minigrid environment (below). The red flag
               indicates the goal and arrows show the expert demonstration. Lighter colors correspond to higher rewards.
@@ -395,12 +380,17 @@
             </p>
           </div>
 
-          <div class="columns is-centered results-grid">
-            <div class="column is-5 has-text-centered">
+          <div class="columns is-vcentered ablation-figures-row">
+            <div class="column is-4 has-text-centered">
+              <img src="./static/images/figures/results/ablations/lever_pull_ablation.png"
+                alt="Ablation of MPG reward components">
+              <p class="figure-caption">Ablation on Lever Pull.</p>
+            </div>
+            <div class="column is-4 has-text-centered">
               <img src="./static/images/figures/toy_env/discriminator.png" alt="Discriminator reward heatmap">
               <p class="figure-caption"><b>Discriminator</b> reward heatmap.</p>
             </div>
-            <div class="column is-5 has-text-centered">
+            <div class="column is-4 has-text-centered">
               <img src="./static/images/figures/toy_env/proximity.png" alt="Proximity reward heatmap">
               <p class="figure-caption"><b>Proximity</b> reward heatmap.</p>
             </div>
