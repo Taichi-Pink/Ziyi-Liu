@@ -163,8 +163,18 @@ hr {
 
 .teaser-image {
   width: 100%;
-  max-width: 520px;
+  max-width: 100%;
   border-radius: 10px;
+}
+
+.abstract-teaser-section {
+  padding-top: 1.5rem;
+}
+
+@media screen and (max-width: 768px) {
+  .abstract-teaser-section .column.is-5 {
+    margin-top: 1.5rem;
+  }
 }
 
 .figure-caption {

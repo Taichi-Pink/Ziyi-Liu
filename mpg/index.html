@@ -60,9 +60,9 @@
                 <a href="../index.html">Ziyi Liu</a><sup>1</sup>,</span>
               <span class="author-block">
                 Grace Zhang<sup>1</sup>,</span>
-              <span class="author-block">
+              <!-- <span class="author-block">
                 <a href="https://viterbi.usc.edu/directory/faculty/Sukhatme/Gaurav">Gaurav Sukhatme</a><sup>1</sup>
-              </span>
+              </span> -->
             </div>
 
             <div class="is-size-6 publication-authors">
@@ -106,18 +106,10 @@
   </section>
 
 
-  <section class="section">
+  <section class="section abstract-teaser-section">
     <div class="container is-max-desktop">
-      <div class="has-text-centered">
-        <img src="./static/images/figures/teaser.png" class="teaser-image" alt="MPG overview">
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
+      <div class="columns is-vcentered">
+        <div class="column is-7">
           <h2 class="title is-3">Abstract</h2>
           <div class="content has-text-justified">
             <p>
@@ -140,6 +132,9 @@
               <b>35.4% increase in success rate</b> over the next best method.
             </p>
           </div>
+        </div>
+        <div class="column is-5 has-text-centered">
+          <img src="./static/images/figures/teaser.png" class="teaser-image" alt="MPG overview">
         </div>
       </div>
     </div>
@@ -250,7 +245,8 @@
               We evaluate MPG on navigation and manipulation tasks with substantial intra-task variation:
             </p>
             <p>
-              <b>(a) Maze2D (D4RL):</b> The agent navigates to a fixed goal location among four fixed objects. Intra-task
+              <b>(a) Maze2D (D4RL):</b> The agent navigates to a fixed goal location among four fixed objects.
+              Intra-task
               variation comes from the agent's random starting position.
             </p>
             <p>
@@ -368,9 +364,11 @@
           <h4 class="title is-4">Ablation Study</h4>
           <div class="content has-text-justified">
             <p>
-              We ablate the two parts of our reward function by training policies with either a <b>discriminator only</b>
+              We ablate the two parts of our reward function by training policies with either a <b>discriminator
+                only</b>
               reward or a <b>proximity only</b> reward. While each component individually provides benefits, combining
-              both yields the best performance. Removing the multi-task dataset (<b>no multi-task data</b>) also degrades
+              both yields the best performance. Removing the multi-task dataset (<b>no multi-task data</b>) also
+              degrades
               performance, indicating that information from related tasks is important for generalization.
             </p>
           </div>
@@ -397,7 +395,7 @@
   <br>
   <hr>
 
-  <section class="section">
+  <!-- <section class="section">
     <div class="container is-max-desktop">
       <div class="columns is-centered has-text-centered">
         <div class="column is-four-fifths">
@@ -413,7 +411,8 @@
             <h4 class="title is-5">How is MPG different from GAIL or DVD?</h4>
             <p>
               GAIL learns a single-task discriminator that cannot effectively leverage heterogeneous multi-task
-              demonstrations. DVD uses a pre-trained multi-task discriminator as a reward but lacks proximity guidance in
+              demonstrations. DVD uses a pre-trained multi-task discriminator as a reward but lacks proximity guidance
+              in
               non-expert states, making the reward exploitable. MPG combines a multi-task discriminator with a proximity
               function to provide both generalizable expert recognition and dense corrective guidance.
             </p>
@@ -428,7 +427,7 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> -->
 
 
   <section class="section" id="BibTeX">
@@ -437,7 +436,7 @@
       <pre><code>@inproceedings{
     liu2026generalize,
     title={Generalize and Guide: Decomposing Rewards for Few-Shot Inverse Reinforcement Learning},
-    author={Ziyi Liu and Grace Zhang and Gaurav Sukhatme},
+    author={Ziyi Liu and Grace Zhang},
     booktitle={Reinforcement Learning Conference (RLC)},
     year={2026}
 }</code></pre>
