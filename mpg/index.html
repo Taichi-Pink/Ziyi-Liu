@@ -362,8 +362,8 @@
           </div>
 
           <h4 class="title is-4">Ablation Study</h4>
-          <div class="columns is-vcentered ablation-row">
-            <div class="column is-6">
+          <div class="columns ablation-row">
+            <div class="column is-7 ablation-text">
               <div class="content has-text-justified">
                 <p>
                   We ablate the two parts of our reward function by training policies with either a <b>discriminator
@@ -376,12 +376,14 @@
                 </p>
               </div>
             </div>
-            <div class="column is-6 has-text-centered ablation-plot">
-              <img src="./static/images/figures/results/ablations/lever_pull_ablation.png"
-                alt="Ablation of MPG reward components">
-              <p class="figure-caption">Ablation of MPG's reward components on Lever Pull.</p>
+            <div class="column is-5 ablation-plot">
+              <div class="ablation-plot-inner">
+                <img src="./static/images/figures/results/ablations/lever_pull_ablation.png"
+                  alt="Ablation of MPG reward components">
+              </div>
             </div>
           </div>
+          <p class="figure-caption has-text-centered">Ablation of MPG's reward components on Lever Pull.</p>
 
           <div class="content has-text-justified">
             <p>
