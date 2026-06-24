@@ -1,194 +1,398 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Generalize and Guide: Decomposing Rewards for Few-Shot IRL</title>
+  <meta charset="utf-8">
   <meta name="description"
-    content="MPG learns a generalizable and informative reward for few-shot inverse reinforcement learning from multi-task demonstrations and online interaction.">
+    content="Generalize and Guide: Decomposing Rewards for Few-Shot Inverse Reinforcement Learning.">
+  <meta name="keywords" content="Inverse Reinforcement Learning, Few-Shot Learning, Reward Decomposition">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Generalize and Guide: Decomposing Rewards for Few-Shot Inverse Reinforcement Learning</title>
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="icon" href="../images/favicon_io/favicon.ico">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.ico">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
 </head>
 
 <body>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-10 col-md-offset-1 text-center" style="padding-top: 2rem;">
-        <h1>
-          <b>Generalize and Guide</b>: Decomposing Rewards for<br>
-          Few-Shot Inverse Reinforcement Learning
-        </h1>
-        <p class="lead" style="margin-top: 1rem;">
-          <span class="label label-primary">RLC 2026</span>
-          <span class="label label-default">RSS RC4Robotics Workshop 2025</span>
-        </p>
-      </div>
-    </div>
 
-    <div class="row author-block">
-      <div class="col-md-12 text-center">
-        <p>
-          <a href="../index.html">Ziyi Liu</a><sup>1</sup>,
-          Grace Zhang<sup>1</sup>,
-          <a href="https://viterbi.usc.edu/directory/faculty/Sukhatme/Gaurav">Gaurav Sukhatme</a><sup>1</sup>
-        </p>
-        <p class="affiliation">
-          <sup>1</sup>University of Southern California
-        </p>
-      </div>
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
     </div>
-
-    <div class="row btn-link-row">
-      <div class="col-md-12 text-center">
-        <a class="btn btn-lg btn-default" href="paper.pdf">
-          <i class="fa fa-file-text-o"></i> Paper
+    <div class="navbar-menu">
+      <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+        <a class="navbar-item" href="../index.html">
+          <span class="icon">
+            <i class="fas fa-home"></i>
+          </span>
         </a>
-        <a class="btn btn-lg btn-default"
-          href="https://drive.google.com/drive/folders/1JbN2GX0005qrPSvRD3IEASOa9o5S3SMs?usp=sharing">
-          <i class="fa fa-github"></i> Code &amp; Data
-        </a>
-        <a class="btn btn-lg btn-default" href="../index.html">
-          <i class="fa fa-home"></i> Author Page
-        </a>
-      </div>
-    </div>
 
-    <div class="row teaser section">
-      <div class="col-md-10 col-md-offset-1 text-center">
-        <img src="img/teaser.png" alt="MPG overview: multi-task discriminator and proximity reward">
-        <p class="caption">
-          <b>MPG</b> learns a generalizable and informative reward by combining multi-task demonstrations with
-          policy proximity. A multi-task discriminator transfers shared structure across related tasks, while a
-          proximity function provides corrective guidance when the agent deviates from expert behavior.
-        </p>
-      </div>
-    </div>
-
-    <div class="row section">
-      <div class="col-md-8 col-md-offset-2">
-        <h3>Abstract</h3>
-        <p class="text-justify">
-          Inverse reinforcement learning (IRL) provides a powerful framework for learning from demonstrations.
-          However, real-world tasks often exhibit substantial natural variations (e.g., picking up mugs with varying
-          shapes), making it impractical to collect demonstrations that fully specify a new task under every possible
-          scenario. In practice, while demonstrations for the target task are limited, it is often easier to obtain
-          datasets of heterogeneous but related behaviors. This motivates the problem of
-          <b>few-shot IRL with multi-task demonstrations (FM-IRL)</b>, where an agent must learn a new task with
-          substantial variations from only a limited number of target-task demonstrations, together with sufficient
-          demonstrations of related tasks and online agent experience.
-        </p>
-        <p class="text-justify">
-          We introduce <b>Multitask discriminator Proximity-Guided IRL (MPG)</b>, which learns two complementary
-          reward components: (1) a generalizable discriminator that transfers shared structure across related tasks to
-          identify expert behavior in a new task, and (2) a proximity function that measures how far a state deviates
-          from expert behavior and provides corrective guidance during exploration. We demonstrate the effectiveness of
-          our method on multiple challenging navigation and manipulation tasks under significant variations (e.g.,
-          object configurations, table layouts, and initial robot poses), resulting in an average
-          <b>35.4% increase in success rate</b> over the next best method.
-        </p>
-      </div>
-    </div>
-
-    <div class="row section">
-      <div class="col-md-8 col-md-offset-2">
-        <h3>Problem Setting: FM-IRL</h3>
-        <div class="highlight-box">
-          <p>
-            FM-IRL reflects a practical robotics scenario: multi-task expert demonstrations are often available,
-            but interaction with multi-task training environments is difficult to obtain. The agent must learn a
-            new target task using:
-          </p>
-          <ul>
-            <li>A small set of target-task demonstrations</li>
-            <li>A larger multi-task demonstration dataset from related tasks</li>
-            <li>Online interaction with the target-task environment only</li>
-          </ul>
-        </div>
-        <p>
-          Unlike meta-IRL, FM-IRL does not require access to multi-task environments. Unlike standard IL, MPG learns
-          a reward function that supports online policy optimization and recovery from unseen states.
-        </p>
-      </div>
-    </div>
-
-    <div class="row section">
-      <div class="col-md-8 col-md-offset-2">
-        <h3>Method: MPG</h3>
-        <p>
-          MPG decomposes the learned reward into two synergistic components:
-        </p>
-        <div class="row">
-          <div class="col-sm-6">
-            <h4>Multi-Task Discriminator</h4>
-            <p>
-              A demonstration-conditioned discriminator predicts whether a state-action pair is expert for a given
-              task. Trained on both target and multi-task demonstrations, it transfers shared structure across tasks
-              to recognize expert behavior under diverse intra-task variations.
-            </p>
-          </div>
-          <div class="col-sm-6">
-            <h4>Proximity Function</h4>
-            <p>
-              A proximity function estimates temporal distance to the expert state distribution, providing dense
-              corrective guidance in non-expert regions. It is trained with temporal consistency constraints inspired
-              by quasimetric learning.
-            </p>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link">
+            Related Research
+          </a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://clvrai.github.io/boss/">
+              BOSS
+            </a>
           </div>
         </div>
-        <p class="text-center" style="font-size: 18px; margin-top: 1rem;">
-          <code>R&#771;(s<sub>t</sub>, a<sub>t</sub>, s<sub>t+1</sub>) = d(s<sub>t</sub>, a<sub>t</sub>) + &lambda; [p(s<sub>t</sub>) &minus; p(s<sub>t+1</sub>)]</code>
-        </p>
-        <p>
-          The combined reward encourages expert-consistent behavior while guiding the agent back toward the expert
-          distribution when it deviates. The policy is optimized with standard RL (PPO) using this decomposed reward.
-        </p>
       </div>
     </div>
+  </nav>
 
-    <div class="row section">
-      <div class="col-md-8 col-md-offset-2">
-        <h3>Experiments</h3>
-        <p>
-          We evaluate MPG on navigation and manipulation tasks with substantial intra-task variation:
-        </p>
-        <ul>
-          <li><b>Maze2D</b> (D4RL): navigate to a goal among fixed objects with varying start positions</li>
-          <li><b>Block Stacking</b>: pick and place colored blocks with random initial configurations</li>
-          <li><b>FactorWorld</b>: robot manipulation with varying object, table, and arm configurations</li>
-        </ul>
-        <p>
-          MPG consistently outperforms IL, IRL, meta-IRL, and discriminator-only baselines including BC, SQIL,
-          GAIL, MT-AIRL, PEMIRL, GoalPro, and DVD. Both reward components contribute: ablations show that the
-          discriminator alone and proximity alone underperform the full method, and removing multi-task data
-          significantly degrades performance.
-        </p>
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">Generalize and Guide: Decomposing Rewards for Few-Shot Inverse
+              Reinforcement Learning</h1>
+            <div class="is-size-6 publication-authors">
+              <span class="author-block">
+                <a href="../index.html">Ziyi Liu</a><sup>1</sup>,</span>
+              <span class="author-block">
+                Grace Zhang<sup>1</sup>,</span>
+              <span class="author-block">
+                <a href="https://viterbi.usc.edu/directory/faculty/Sukhatme/Gaurav">Gaurav Sukhatme</a><sup>1</sup>
+              </span>
+            </div>
+
+            <div class="is-size-6 publication-authors">
+              <span class="author-block"><sup>1</sup>University of Southern California</span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <br>
+              <span class="author-block"><b>Reinforcement Learning Conference (RLC) 2026</b></span>
+            </div>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><b>RSS RC4Robotics Workshop 2025</b></span>
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <span class="link-block">
+                  <a href="paper.pdf" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>Paper</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="https://drive.google.com/drive/folders/1JbN2GX0005qrPSvRD3IEASOa9o5S3SMs?usp=sharing"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+              </div>
+            </div>
+
+          </div>
+        </div>
       </div>
     </div>
+  </section>
 
-    <div class="row section">
-      <div class="col-md-8 col-md-offset-2">
-        <h3>BibTeX</h3>
-        <div class="bibtex">@inproceedings{liu2026generalize,
-  title={Generalize and Guide: Decomposing Rewards for Few-Shot Inverse Reinforcement Learning},
-  author={Liu, Ziyi and Zhang, Grace and Sukhatme, Gaurav},
-  booktitle={Reinforcement Learning Conference (RLC)},
-  year={2026}
-}</div>
+
+  <section class="section">
+    <div class="container">
+      <div class="is-centered has-text-centered">
+        <img src="./static/images/teaser.png" width="100%" alt="MPG overview"
+          style="border-radius:10px; max-width: 960px;">
       </div>
     </div>
+  </section>
 
-    <footer>
-      <p>
-        Website template adapted from <a href="https://jonbarron.info/">Jon Barron</a>.
-        &nbsp;|&nbsp;
-        <a href="../index.html">Ziyi Liu</a>
-      </p>
-    </footer>
-  </div>
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              Inverse reinforcement learning (IRL) provides a powerful framework for learning from demonstrations.
+              However, real-world tasks often exhibit substantial natural variations (e.g., picking up mugs with varying
+              shapes), making it impractical to collect demonstrations that fully specify a new task under every
+              possible scenario. In practice, while demonstrations for the target task are limited, it is often easier
+              to obtain datasets of heterogeneous but related behaviors. This motivates the problem of
+              <b>few-shot IRL with multi-task demonstrations (FM-IRL)</b>, where an agent must learn a new task with
+              substantial variations from only a limited number of target-task demonstrations, together with sufficient
+              demonstrations of related tasks and online agent experience.
+            </p>
+            <p>
+              We introduce <b>Multitask discriminator Proximity-Guided IRL (MPG)</b>, which learns two complementary
+              reward components: (1) a generalizable discriminator that transfers shared structure across related tasks
+              to identify expert behavior in a new task, and (2) a proximity function that measures how far a state
+              deviates from expert behavior and provides corrective guidance during exploration. We demonstrate the
+              effectiveness of our method on multiple challenging navigation and manipulation tasks under significant
+              variations (e.g., object configurations, table layouts, and initial robot poses), resulting in an average
+              <b>35.4% increase in success rate</b> over the next best method.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <br>
+  <hr>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+          <h2 class="title is-3">Multitask Discriminator Proximity-Guided IRL (MPG) Method</h2>
+          <div class="content has-text-justified">
+            <p>
+              MPG learns a new task from limited demonstrations by decomposing the reward function into two synergistic
+              components: a <b>multi-task discriminator</b> that transfers knowledge across related tasks, and a
+              <b>proximity function</b> that provides corrective guidance when the agent deviates from expert behavior.
+              Together, these components produce a generalizable and informative reward for effective few-shot IRL.
+            </p>
+          </div>
+          <div class="content has-text-centered">
+            <img src="./static/images/teaser.png" class="interpolation-image"
+              alt="MPG learns a generalizable and informative reward from multi-task demonstrations and policy proximity.">
+          </div>
+          <div class="content has-text-justified">
+            <p>
+              To generalize beyond few-shot demonstrations, our key insight is twofold: demonstrations from other tasks
+              can be leveraged to infer the expert distribution of a new task, and online interaction can be used to
+              estimate temporal distance to this distribution, providing corrective guidance when the agent deviates.
+            </p>
+            <h4 class="title is-5">1. Multi-Task Discriminator</h4>
+            <p>
+              We propose a demonstration-conditioned discriminator that predicts whether a state-action pair is expert
+              for a given task. Trained on both target and multi-task demonstrations, it transfers shared structure
+              across tasks to recognize expert behavior under diverse intra-task variations. The discriminator score
+              <i>d(s, a)</i> is used directly as a reward to encourage expert-consistent behavior.
+            </p>
+            <h4 class="title is-5">2. Proximity Function</h4>
+            <p>
+              To provide informative rewards in non-expert states, we introduce a proximity function <i>p(s)</i> that
+              estimates temporal distance to the expert state distribution. It is trained with temporal consistency
+              constraints inspired by quasimetric learning, anchoring expert states at zero proximity and enforcing
+              <i>p(s<sub>t</sub>) &le; p(s<sub>t+1</sub>) + &zeta;</i> along policy transitions.
+            </p>
+            <h4 class="title is-5">3. Combined MPG Reward</h4>
+            <p>
+              The full reward integrates expert recognition and proximity guidance:
+            </p>
+            <p style="text-align: center;">
+              <b>R&#771;(s<sub>t</sub>, a<sub>t</sub>, s<sub>t+1</sub>) = d(s<sub>t</sub>, a<sub>t</sub>) + &lambda;
+                [p(s<sub>t</sub>) &minus; p(s<sub>t+1</sub>)]</b>
+            </p>
+            <p>
+              The policy is optimized with standard RL (PPO) using this decomposed reward. At each iteration, the agent
+              collects transitions, updates the discriminator and proximity function, and improves the policy.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <br>
+  <hr>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+          <h3 class="title is-3">Problem Setting: FM-IRL</h3>
+          <div class="content has-text-justified">
+            <p>
+              FM-IRL reflects a practical robotics scenario: multi-task expert demonstrations are often available, but
+              interaction with multi-task training environments is difficult to obtain. The agent must learn a new
+              target task using only:
+            </p>
+            <ol>
+              <li>A small set of target-task demonstrations</li>
+              <li>A larger multi-task demonstration dataset from related tasks</li>
+              <li>Online interaction with the target-task environment</li>
+            </ol>
+            <p>
+              Unlike meta-IRL, FM-IRL does not require access to multi-task environments. Unlike standard imitation
+              learning, MPG learns a reward function that supports online policy optimization and recovery from unseen
+              states.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <br>
+  <hr>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+          <h3 class="title is-3">Environments</h3>
+          <div class="content has-text-justified">
+            <p>
+              We evaluate MPG on navigation and manipulation tasks with substantial intra-task variation:
+            </p>
+            <p>
+              <b>(a) Maze2D (D4RL):</b> The agent navigates to a fixed goal location among four fixed objects. Intra-task
+              variation comes from the agent's random starting position.
+            </p>
+            <p>
+              <b>(b) Block Stacking:</b> The agent picks up a block of one color and places it on a block of another
+              color, with random initial block positions creating variation.
+            </p>
+            <p>
+              <b>(c) FactorWorld:</b> A multi-task benchmark of robot manipulation tasks with variations in object
+              position, table position, distractor objects, and arm position.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <br>
+  <hr>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+          <h3 class="title is-3">Results</h3>
+
+          <h4 class="title is-4">Quantitative Comparison</h4>
+          <div class="content has-text-justified">
+            <p>
+              MPG consistently outperforms all baselines across Maze2D, Block Stacking, and seven FactorWorld tasks,
+              achieving an average <b>35.4% success rate improvement</b> over the next best method. We compare against
+              BC, SQIL, GAIL, MT-AIRL, PEMIRL, GoalPro, and DVD.
+            </p>
+            <p>
+              <b>MPG vs. IRL baselines:</b> Although GAIL and MT-AIRL have access to the same data resources, they
+              struggle to leverage heterogeneous demonstrations under scarce supervision and substantial task variation.
+              PEMIRL underperforms due to the high sample cost of meta-training within a fixed budget.
+            </p>
+            <p>
+              <b>MPG vs. IL baselines:</b> BC is a strong baseline under limited demonstrations, but cannot improve
+              through online interaction. SQIL relies on an extremely sparse reward signal and performs poorly on most
+              tasks.
+            </p>
+            <p>
+              <b>MPG vs. discriminator/proximity baselines:</b> GoalPro and DVD fail to learn effective policies in most
+              tasks, highlighting the importance of combining generalizable expert recognition with dense proximity
+              guidance in non-expert states.
+            </p>
+          </div>
+
+          <h4 class="title is-4">Ablation Study</h4>
+          <div class="content has-text-justified">
+            <p>
+              We ablate the two parts of our reward function by training policies with either a <b>discriminator only</b>
+              reward or a <b>proximity only</b> reward. While each component individually provides benefits, combining
+              both yields the best performance. Removing the multi-task dataset (<b>no multi-task data</b>) also degrades
+              performance, indicating that information from related tasks is important for generalization.
+            </p>
+            <p>
+              Performance improves with more target demonstrations and with greater task diversity in the multi-task
+              dataset, though gains plateau once a moderate level of diversity is reached.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <br>
+  <hr>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Q &amp; A</h2>
+          <div class="content has-text-justified">
+            <h4 class="title is-5">How is FM-IRL different from meta-IRL?</h4>
+            <p>
+              Meta-IRL requires access to multi-task training environments and aims to enable rapid adaptation across a
+              meta-test suite of tasks. FM-IRL focuses on sample-efficient learning for a single target task, leveraging
+              multi-task demonstrations and online interaction with only the target environment.
+            </p>
+
+            <h4 class="title is-5">How is MPG different from GAIL or DVD?</h4>
+            <p>
+              GAIL learns a single-task discriminator that cannot effectively leverage heterogeneous multi-task
+              demonstrations. DVD uses a pre-trained multi-task discriminator as a reward but lacks proximity guidance in
+              non-expert states, making the reward exploitable. MPG combines a multi-task discriminator with a proximity
+              function to provide both generalizable expert recognition and dense corrective guidance.
+            </p>
+
+            <h4 class="title is-5">What are the limitations of MPG?</h4>
+            <p>
+              MPG requires a structured multi-task demonstration dataset from the same domain and agent. It is also
+              fairly sample hungry during online training, and the learned reward function cannot be reused to train a
+              new policy from scratch since it is trained online with the policy.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code>@inproceedings{
+    liu2026generalize,
+    title={Generalize and Guide: Decomposing Rewards for Few-Shot Inverse Reinforcement Learning},
+    author={Ziyi Liu and Grace Zhang and Gaurav Sukhatme},
+    booktitle={Reinforcement Learning Conference (RLC)},
+    year={2026}
+}</code></pre>
+    </div>
+  </section>
+
+
+  <footer class="footer">
+    <div class="container">
+      <div class="content has-text-centered">
+        <div class="columns is-centered">
+          <div class="column is-8">
+            <div class="content">
+              <p>
+                Website borrowed from <a rel="license" href="https://nerfies.github.io/">Nerfies</a>.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
 </body>
 
 </html>
