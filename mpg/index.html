@@ -362,21 +362,40 @@
           </div>
 
           <h4 class="title is-4">Ablation Study</h4>
+          <div class="columns is-vcentered ablation-row">
+            <div class="column is-5">
+              <div class="content has-text-justified">
+                <p>
+                  We ablate the two parts of our reward function by training policies with either a <b>discriminator
+                    only</b>
+                  reward or a <b>proximity only</b> reward. While each component individually provides benefits,
+                  combining
+                  both yields the best performance. Removing the multi-task dataset (<b>no multi-task data</b>) also
+                  degrades
+                  performance, indicating that information from related tasks is important for generalization.
+                </p>
+              </div>
+            </div>
+            <div class="column is-7 has-text-centered">
+              <img src="./static/images/figures/results/ablations/lever_pull_ablation.png"
+                alt="Ablation of MPG reward components" style="width: 100%; border-radius: 5px;">
+              <p class="figure-caption">Ablation of MPG's reward components on Lever Pull.</p>
+            </div>
+          </div>
+
           <div class="content has-text-justified">
             <p>
-              We ablate the two parts of our reward function by training policies with either a <b>discriminator
-                only</b>
-              reward or a <b>proximity only</b> reward. While each component individually provides benefits, combining
-              both yields the best performance. Removing the multi-task dataset (<b>no multi-task data</b>) also
-              degrades
-              performance, indicating that information from related tasks is important for generalization.
+              We further illustrate the two components in a simple empty Minigrid environment (below). The red flag
+              indicates the goal and arrows show the expert demonstration. Lighter colors correspond to higher rewards.
+              See the paper appendix for more details about this environment.
+            </p>
+            <p>
+              The two parts of our reward function provide complementary and informative learning signal: the
+              discriminator generalizes to certain goal-reaching paths (e.g., directly above the goal), while the
+              proximity provides a smooth gradient in non-expert regions.
             </p>
           </div>
-          <div class="content has-text-centered results-grid">
-            <img src="./static/images/figures/results/ablations/lever_pull_ablation.png"
-              alt="Ablation of MPG reward components" style="max-width: 70%;">
-            <p class="figure-caption">Ablation of MPG's reward components on Lever Pull.</p>
-          </div>
+
           <div class="columns is-centered results-grid">
             <div class="column is-5 has-text-centered">
               <img src="./static/images/figures/toy_env/discriminator.png" alt="Discriminator reward heatmap">
