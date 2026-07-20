@@ -128,8 +128,9 @@
               to identify expert behavior in a new task, and (2) a proximity function that measures how far a state
               deviates from expert behavior and provides corrective guidance during exploration. We demonstrate the
               effectiveness of our method on multiple challenging navigation and manipulation tasks under significant
-              variations (e.g., object configurations, table layouts, and initial robot poses), resulting in an average
-              <b>35.4% increase in success rate</b> over the next best method.
+              variations (e.g., object configurations, table layouts, and initial robot poses), achieving an average
+              success rate of 81.2\%,
+              outperforming the strongest per-task baseline by <b>an average of 24.7 percentage points</b>.
             </p>
           </div>
         </div>
@@ -289,55 +290,168 @@
           <h4 class="title is-4">Quantitative Comparison</h4>
           <div class="content has-text-justified">
             <p>
-              MPG consistently outperforms all baselines across Maze2D, Block Stacking, and seven FactorWorld tasks,
-              achieving an average <b>35.4% success rate improvement</b> over the next best method. We compare against
-              BC, SQIL, GAIL, MT-AIRL, PEMIRL, GoalPro, and DVD.
+             MPG achieves the highest mean success rate on eight of the nine tasks. Across all tasks, MPG improves over
+              the strongest per-task baseline by an average of <b>24.7 percentage points</b> in success rate.
             </p>
           </div>
-          <div class="content has-text-centered results-grid">
-            <div class="columns is-multiline is-centered">
-              <div class="column is-4">
-                <img src="./static/images/figures/results/main/maze_main_success.png" alt="Maze2D results">
-              </div>
-              <div class="column is-4">
-                <img src="./static/images/figures/results/main/block_main_success.png" alt="Block Stacking results">
-              </div>
-              <div class="column is-4">
-                <img src="./static/images/figures/results/main/door_open_main_success.png" alt="Door Open results">
-              </div>
-              <div class="column is-4">
-                <img src="./static/images/figures/results/main/door_unlock_main_success.png" alt="Door Unlock results">
-              </div>
-              <div class="column is-4">
-                <img src="./static/images/figures/results/main/plate_slide_back_main_success.png"
-                  alt="Plate Slide Back results">
-              </div>
-              <div class="column is-4">
-                <img src="./static/images/figures/results/main/button_press_wall_main_success.png"
-                  alt="Button Press Wall results">
-              </div>
-            </div>
-            <img src="./static/images/figures/results/main/main_legend.png" alt="Results legend"
-              style="max-width: 90%; margin-top: 0.5rem;">
+          <div class="table-container results-table-wrap">
+            <table class="table is-bordered is-striped is-hoverable is-fullwidth results-table">
+              <thead>
+                <tr>
+                  <th>Method</th>
+                  <th>Maze2D</th>
+                  <th>Block<br>Stacking</th>
+                  <th>Drawer<br>Open</th>
+                  <th>Door<br>Lock</th>
+                  <th>Door<br>Unlock</th>
+                  <th>Plate Slide<br>Back</th>
+                  <th>Door<br>Open</th>
+                  <th>Lever<br>Pull</th>
+                  <th>Button Press<br>Wall</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>GAIL</td>
+                  <td>53.2 ± 37.7</td>
+                  <td><u>25.9 ± 43.9</u></td>
+                  <td>17.7 ± 10.9</td>
+                  <td>22.0 ± 6.3</td>
+                  <td>43.9 ± 17.3</td>
+                  <td><u>35.5 ± 21.4</u></td>
+                  <td><u>50.2 ± 34.1</u></td>
+                  <td><u>52.2 ± 45.1</u></td>
+                  <td>22.2 ± 9.2</td>
+                </tr>
+                <tr>
+                  <td>MT-AIRL</td>
+                  <td>42.9 ± 12.7</td>
+                  <td>9.1 ± 16.1</td>
+                  <td>25.3 ± 4.6</td>
+                  <td>33.0 ± 10.8</td>
+                  <td>32.6 ± 17.4</td>
+                  <td>19.3 ± 13.2</td>
+                  <td>26.4 ± 12.5</td>
+                  <td>22.7 ± 19.4</td>
+                  <td>23.4 ± 11.7</td>
+                </tr>
+                <tr>
+                  <td>PEMIRL</td>
+                  <td>15.4 ± 8.4</td>
+                  <td>0.7 ± 2.0</td>
+                  <td>34.2 ± 11.7</td>
+                  <td>15.4 ± 5.6</td>
+                  <td>7.1 ± 3.4</td>
+                  <td>13.3 ± 1.5</td>
+                  <td>4.5 ± 6.3</td>
+                  <td>5.9 ± 3.8</td>
+                  <td>2.5 ± 3.5</td>
+                </tr>
+                <tr>
+                  <td>BC</td>
+                  <td>53.6 ± 16.2</td>
+                  <td>22.0 ± 19.8</td>
+                  <td>30.5 ± 1.6</td>
+                  <td>37.3 ± 16.0</td>
+                  <td>28.7 ± 25.0</td>
+                  <td>30.5 ± 8.4</td>
+                  <td>49.3 ± 23.5</td>
+                  <td>44.5 ± 21.3</td>
+                  <td>38.0 ± 5.0</td>
+                </tr>
+                <tr>
+                  <td>DemoConditioned-BC</td>
+                  <td>15.4 ± 11.1</td>
+                  <td>0.4 ± 0.7</td>
+                  <td>57.2 ± 21.6</td>
+                  <td><u>52.0 ± 16.7</u></td>
+                  <td><u>61.4 ± 20.1</u></td>
+                  <td>28.9 ± 4.9</td>
+                  <td>47.4 ± 24.8</td>
+                  <td>34.7 ± 22.0</td>
+                  <td><u>69.0 ± 25.6</u></td>
+                </tr>
+                <tr>
+                  <td>Transformer-BC</td>
+                  <td>21.5 ± 7.5</td>
+                  <td>5.1 ± 9.2</td>
+                  <td><u>66.4 ± 23.0</u></td>
+                  <td>35.9 ± 14.9</td>
+                  <td>44.6 ± 16.3</td>
+                  <td>33.7 ± 8.3</td>
+                  <td>25.7 ± 38.3</td>
+                  <td>8.6 ± 4.7</td>
+                  <td>51.3 ± 24.9</td>
+                </tr>
+                <tr>
+                  <td>SQIL</td>
+                  <td>51.5 ± 5.4</td>
+                  <td>6.0 ± 11.4</td>
+                  <td>10.8 ± 12.1</td>
+                  <td>15.8 ± 2.5</td>
+                  <td>6.0 ± 0.0</td>
+                  <td>14.6 ± 8.7</td>
+                  <td>3.7 ± 0.6</td>
+                  <td>14.8 ± 11.3</td>
+                  <td>6.4 ± 4.2</td>
+                </tr>
+                <tr>
+                  <td>DVD</td>
+                  <td>31.7 ± 33.5</td>
+                  <td>0.0 ± 0.0</td>
+                  <td>9.0 ± 8.9</td>
+                  <td>24.8 ± 4.1</td>
+                  <td>14.9 ± 15.6</td>
+                  <td>12.8 ± 5.0</td>
+                  <td>13.5 ± 5.9</td>
+                  <td>12.2 ± 11.2</td>
+                  <td>12.2 ± 6.3</td>
+                </tr>
+                <tr>
+                  <td>Goal Proximity</td>
+                  <td><b>96.0 ± 2.8</b></td>
+                  <td>1.0 ± 2.0</td>
+                  <td>7.4 ± 7.3</td>
+                  <td>14.8 ± 5.6</td>
+                  <td>7.2 ± 6.8</td>
+                  <td>27.6 ± 5.1</td>
+                  <td>4.6 ± 9.0</td>
+                  <td>0.0 ± 0.0</td>
+                  <td>12.3 ± 22.5</td>
+                </tr>
+                <tr>
+                  <td><b>Ours (MPG)</b></td>
+                  <td><u>94.1 ± 3.6</u></td>
+                  <td><b>61.6 ± 19.9</b></td>
+                  <td><b>94.1 ± 2.2</b></td>
+                  <td><b>57.6 ± 31.8</b></td>
+                  <td><b>78.6 ± 22.0</b></td>
+                  <td><b>63.9 ± 23.7</b></td>
+                  <td><b>97.0 ± 1.1</b></td>
+                  <td><b>93.2 ± 3.0</b></td>
+                  <td><b>90.5 ± 5.8</b></td>
+                </tr>
+              </tbody>
+            </table>
             <p class="figure-caption">
-              MPG comparison against all baselines. Dashed lines (BC, SQIL) denote performance at convergence.
+              Comparison of mean policy success rates (%) under the FM-IRL setting across nine navigation and
+              manipulation tasks. We report 95% confidence intervals over five random seeds. Best and second-best
+              mean performances on each task are shown in <b>bold</b> and <u>underlined</u>, respectively.
             </p>
           </div>
           <div class="content has-text-justified">
             <p>
-              <b>MPG vs. IRL baselines:</b> Although GAIL and MT-AIRL have access to the same data resources, they
-              struggle to leverage heterogeneous demonstrations under scarce supervision and substantial task variation.
-              PEMIRL underperforms due to the high sample cost of meta-training within a fixed budget.
+              <b>MPG vs. IRL baselines:</b> GAIL, MT-AIRL, and PEMIRL underperform (35.9%, 26.1%, and 11.0% average
+              success), struggling to leverage heterogeneous data or paying a high meta-training sample cost.
             </p>
             <p>
-              <b>MPG vs. IL baselines:</b> BC is a strong baseline under limited demonstrations, but cannot improve
-              through online interaction. SQIL relies on an extremely sparse reward signal and performs poorly on most
-              tasks.
+              <b>MPG vs. IL baselines:</b> BC variants are relatively strong—DemoConditioned-BC is the best baseline
+              at 40.7% average success—suggesting reward inference is harder than direct policy learning here. SQIL
+              reaches only 14.4% average success due to its sparse reward, except on Maze2D where the layout is fixed.
             </p>
             <p>
-              <b>MPG vs. discriminator/proximity baselines:</b> GoalPro and DVD fail to learn effective policies in most
-              tasks, highlighting the importance of combining generalizable expert recognition with dense proximity
-              guidance in non-expert states.
+              <b>MPG vs. discriminator/proximity baselines:</b> GoalPro does well on Maze2D (96.0%) but only 19.0%
+              on average; DVD reaches 14.6%, as its fixed pre-trained reward is easily exploited.
             </p>
           </div>
 
