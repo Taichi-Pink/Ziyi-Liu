@@ -228,6 +228,10 @@ hr {
   min-width: 4.5em;
 }
 
+.results-table tr.method-group-start td {
+  border-top: 2.5px solid #363636 !important;
+}
+
 .env-grid img {
   width: 100%;
   border-radius: 5px;
