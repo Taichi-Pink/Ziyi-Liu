@@ -199,6 +199,35 @@ hr {
   border-radius: 5px;
 }
 
+.results-table-wrap {
+  overflow-x: auto;
+  margin: 1rem 0 1.5rem;
+}
+
+.results-table {
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.results-table th,
+.results-table td {
+  text-align: center;
+  vertical-align: middle !important;
+  padding: 0.4em 0.5em !important;
+}
+
+.results-table th:first-child,
+.results-table td:first-child {
+  text-align: left;
+  font-weight: 600;
+}
+
+.results-table thead th {
+  white-space: normal;
+  line-height: 1.2;
+  min-width: 4.5em;
+}
+
 .env-grid img {
   width: 100%;
   border-radius: 5px;
