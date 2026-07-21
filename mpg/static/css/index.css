@@ -207,29 +207,42 @@ hr {
 .results-table {
   font-size: 12px;
   white-space: nowrap;
+  background: transparent !important;
+  border-collapse: collapse;
+  border: none !important;
 }
 
 .results-table th,
 .results-table td {
   text-align: center;
   vertical-align: middle !important;
-  padding: 0.4em 0.5em !important;
+  padding: 0.35em 0.45em !important;
+  border: none !important;
+  background: transparent !important;
+  color: #111;
 }
 
 .results-table th:first-child,
 .results-table td:first-child {
   text-align: left;
-  font-weight: 600;
+  font-weight: 400;
 }
 
 .results-table thead th {
   white-space: normal;
-  line-height: 1.2;
+  line-height: 1.15;
   min-width: 4.5em;
+  font-weight: 400;
+  border-top: 2px solid #111 !important;
+  border-bottom: 1px solid #111 !important;
+}
+
+.results-table tbody tr:last-child td {
+  border-bottom: 2px solid #111 !important;
 }
 
 .results-table tr.method-group-start td {
-  border-top: 2.5px solid #363636 !important;
+  border-top: 1px solid #111 !important;
 }
 
 .env-grid img {
